@@ -183,7 +183,7 @@ namespace Lab9CSharp
                     case "7": SearchByArtist(); break;
                     case "0": running = false; break;
                     default:
-                        Console.WriteLine("✗ Невірний вибір, спробуйте ще раз.");
+                        Console.WriteLine(" Невірний вибір, спробуйте ще раз.");
                         break;
                 }
             }
@@ -205,7 +205,7 @@ namespace Lab9CSharp
             };
             catalog.Add("Rock Classics Vol.1", songs1);
             catalog.Add("Rock Classics Vol.2", songs2);
-            Console.WriteLine("✓ Завантажено тестові дані (2 диски).");
+            Console.WriteLine(" Завантажено тестові дані (2 диски).");
         }
 
         private void PrintMenu()
@@ -226,40 +226,40 @@ namespace Lab9CSharp
             Console.Write("Введіть назву нового диску: ");
             string name = Console.ReadLine()?.Trim() ?? "";
             if (string.IsNullOrEmpty(name))
-            { Console.WriteLine("✗ Назва не може бути порожньою."); return; }
+            { Console.WriteLine(" Назва не може бути порожньою."); return; }
 
             if (catalog.ContainsKey(name))
-            { Console.WriteLine($"✗ Диск \"{name}\" вже існує в каталозі."); return; }
+            { Console.WriteLine($" Диск \"{name}\" вже існує в каталозі."); return; }
 
             catalog.Add(name, new ArrayList());
-            Console.WriteLine($"✓ Диск \"{name}\" додано.");
+            Console.WriteLine($" Диск \"{name}\" додано.");
         }
 
         private void RemoveDisk()
         {
             if (catalog.Count == 0)
-            { Console.WriteLine("✗ Каталог порожній."); return; }
+            { Console.WriteLine(" Каталог порожній."); return; }
 
             Console.Write("Введіть назву диску для видалення: ");
             string name = Console.ReadLine()?.Trim() ?? "";
 
             if (!catalog.ContainsKey(name))
-            { Console.WriteLine($"✗ Диск \"{name}\" не знайдено."); return; }
+            { Console.WriteLine($" Диск \"{name}\" не знайдено."); return; }
 
             catalog.Remove(name);
-            Console.WriteLine($"✓ Диск \"{name}\" видалено з каталогу.");
+            Console.WriteLine($" Диск \"{name}\" видалено з каталогу.");
         }
 
         private void AddSong()
         {
             if (catalog.Count == 0)
-            { Console.WriteLine("✗ Каталог порожній. Спочатку додайте диск."); return; }
+            { Console.WriteLine("Каталог порожній. Спочатку додайте диск."); return; }
 
             Console.Write("Введіть назву диску: ");
             string diskName = Console.ReadLine()?.Trim() ?? "";
 
             if (!catalog.ContainsKey(diskName))
-            { Console.WriteLine($"✗ Диск \"{diskName}\" не знайдено."); return; }
+            { Console.WriteLine($" Диск \"{diskName}\" не знайдено."); return; }
 
             Console.Write("Введіть виконавця: ");
             string artist = Console.ReadLine()?.Trim() ?? "";
@@ -268,12 +268,12 @@ namespace Lab9CSharp
             string song = Console.ReadLine()?.Trim() ?? "";
 
             if (string.IsNullOrEmpty(artist) || string.IsNullOrEmpty(song))
-            { Console.WriteLine("✗ Виконавець і пісня не можуть бути порожніми."); return; }
+            { Console.WriteLine(" Виконавець і пісня не можуть бути порожніми."); return; }
 
             string entry = $"{artist} - {song}";
             ArrayList songs = (ArrayList)catalog[diskName];
             songs.Add(entry);
-            Console.WriteLine($"✓ Додано: \"{entry}\" → диск \"{diskName}\".");
+            Console.WriteLine($" Додано: \"{entry}\" → диск \"{diskName}\".");
         }
 
         private void RemoveSong()
@@ -282,11 +282,11 @@ namespace Lab9CSharp
             string diskName = Console.ReadLine()?.Trim() ?? "";
 
             if (!catalog.ContainsKey(diskName))
-            { Console.WriteLine($"✗ Диск \"{diskName}\" не знайдено."); return; }
+            { Console.WriteLine($" Диск \"{diskName}\" не знайдено."); return; }
 
             ArrayList songs = (ArrayList)catalog[diskName];
             if (songs.Count == 0)
-            { Console.WriteLine("✗ На диску немає пісень."); return; }
+            { Console.WriteLine(" На диску немає пісень."); return; }
 
             Console.WriteLine($"Пісні на диску \"{diskName}\":");
             for (int i = 0; i < songs.Count; i++)
@@ -297,10 +297,10 @@ namespace Lab9CSharp
             {
                 string removed = (string)songs[idx - 1];
                 songs.RemoveAt(idx - 1);
-                Console.WriteLine($"✓ Пісню \"{removed}\" видалено.");
+                Console.WriteLine($" Пісню \"{removed}\" видалено.");
             }
             else
-                Console.WriteLine("✗ Невірний номер.");
+                Console.WriteLine(" Невірний номер.");
         }
 
         private void ViewAllCatalog()
@@ -312,7 +312,7 @@ namespace Lab9CSharp
             ICollection keys = catalog.Keys;
             foreach (string disk in keys)
             {
-                Console.WriteLine($"\n💿 {disk}");
+                Console.WriteLine($"\n {disk}");
                 ArrayList songs = (ArrayList)catalog[disk];
                 if (songs.Count == 0)
                     Console.WriteLine("   (пісень немає)");
@@ -330,10 +330,10 @@ namespace Lab9CSharp
             string diskName = Console.ReadLine()?.Trim() ?? "";
 
             if (!catalog.ContainsKey(diskName))
-            { Console.WriteLine($"✗ Диск \"{diskName}\" не знайдено."); return; }
+            { Console.WriteLine($" Диск \"{diskName}\" не знайдено."); return; }
 
             ArrayList songs = (ArrayList)catalog[diskName];
-            Console.WriteLine($"\n💿 {diskName} ({songs.Count} пісень):");
+            Console.WriteLine($"\n {diskName} ({songs.Count} пісень):");
             if (songs.Count == 0)
                 Console.WriteLine("   (пісень немає)");
             else
@@ -346,9 +346,9 @@ namespace Lab9CSharp
             Console.Write("Введіть ім'я виконавця для пошуку: ");
             string artist = Console.ReadLine()?.Trim() ?? "";
             if (string.IsNullOrEmpty(artist))
-            { Console.WriteLine("✗ Введіть виконавця."); return; }
+            { Console.WriteLine(" Введіть виконавця."); return; }
 
-            Console.WriteLine($"\n🔍 Результати пошуку виконавця \"{artist}\":");
+            Console.WriteLine($"\n Результати пошуку виконавця \"{artist}\":");
             bool found = false;
 
             ICollection keys = catalog.Keys;
@@ -359,7 +359,7 @@ namespace Lab9CSharp
                 {
                     if (song.IndexOf(artist, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        Console.WriteLine($"   💿 {disk}  →  {song}");
+                        Console.WriteLine($"   {disk}  →  {song}");
                         found = true;
                     }
                 }
